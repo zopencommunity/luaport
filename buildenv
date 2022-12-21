@@ -1,0 +1,27 @@
+#export ZOPEN_TARBALL_URL="https://www.lua.org/ftp/lua-5.4.4.tar.gz"
+# 5.1 is needed for Neovim
+export ZOPEN_TARBALL_URL="https://www.lua.org/ftp/lua-5.1.5.tar.gz"
+export ZOPEN_TARBALL_DEPS="make zoslib"
+export ZOPEN_MAKE_OPTS="zos"
+export ZOPEN_TYPE="TARBALL"
+export ZOPEN_CONFIGURE="skip"
+export ZOPEN_CHECK_OPTS="test"
+export ZOPEN_INSTALL_OPTS="install INSTALL_TOP=\${ZOPEN_INSTALL_DIR}"
+
+
+zopen_init() {
+  mkdir -p "${ZOPEN_INSTALL_DIR}"
+}
+
+zopen_check_results()
+{
+  dir="$1"
+  pfx="$2"
+  chk="$1/$2_check.log"
+
+  grep -q "Hello world, from Lua 5.1!"  $chk
+  failures=$?
+  echo "actualFailures:$failures"
+  echo "totalTests:1"
+  echo "expectedFailures:0"
+}

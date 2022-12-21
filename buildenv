@@ -1,7 +1,7 @@
 #export ZOPEN_TARBALL_URL="https://www.lua.org/ftp/lua-5.4.4.tar.gz"
 # 5.1 is needed for Neovim
 export ZOPEN_TARBALL_URL="https://www.lua.org/ftp/lua-5.1.5.tar.gz"
-export ZOPEN_TARBALL_DEPS="make zoslib"
+export ZOPEN_TARBALL_DEPS="make zoslib coreutils"
 export ZOPEN_MAKE_OPTS="zos"
 export ZOPEN_TYPE="TARBALL"
 export ZOPEN_CONFIGURE="skip"

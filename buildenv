@@ -25,3 +25,8 @@ zopen_check_results()
   echo "totalTests:1"
   echo "expectedFailures:0"
 }
+
+zopen_get_version()
+{
+    ./src/lua -v 2>&1 | cut -f2 -d' '
+}

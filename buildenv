@@ -7,7 +7,7 @@ export ZOPEN_TYPE="TARBALL"
 export ZOPEN_CONFIGURE="skip"
 export ZOPEN_CHECK_OPTS="test"
 export ZOPEN_INSTALL_OPTS="install INSTALL_TOP=\${ZOPEN_INSTALL_DIR}"
-
+export ZOPEN_EXTRA_CFLAGS="-DLUA_USE_POSIX"
 
 zopen_pre_install() {
   mkdir -p "${ZOPEN_INSTALL_DIR}"

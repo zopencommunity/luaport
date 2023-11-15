@@ -1,9 +1,13 @@
-#export ZOPEN_TARBALL_URL="https://www.lua.org/ftp/lua-5.4.4.tar.gz"
+# bump: lua-version /LUA_VERSION="(.*)"/ https://www.lua.org/ftp/|re:/lua-([\d.]+).tar.gz/$1/|semver:*
+LUA_VERSION="5.1.5"
+
+export ZOPEN_BUILD_LINE="STABLE"
 # 5.1 is needed for Neovim
-export ZOPEN_TARBALL_URL="https://www.lua.org/ftp/lua-5.1.5.tar.gz"
-export ZOPEN_TARBALL_DEPS="make zoslib coreutils"
+export ZOPEN_STABLE_URL="https://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz"
+# export ZOPEN_STABLE_URL="https://www.lua.org/ftp/lua-5.4.4.tar.gz"
+export ZOPEN_STABLE_DEPS="make zoslib coreutils"
 export ZOPEN_MAKE_OPTS="zos MYLIBS=\"\$LIBS\" MYLDFLAGS=\"\$LDFLAGS\""
-export ZOPEN_TYPE="TARBALL"
+
 export ZOPEN_CONFIGURE="skip"
 export ZOPEN_CHECK_OPTS="test"
 export ZOPEN_INSTALL_OPTS="install INSTALL_TOP=\${ZOPEN_INSTALL_DIR}"

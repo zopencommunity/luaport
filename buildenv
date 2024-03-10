@@ -2,16 +2,19 @@
 LUA_VERSION="5.1.5"
 
 export ZOPEN_BUILD_LINE="STABLE"
-# 5.1 is needed for Neovim
+# 5.1.5 is needed for Neovim
 export ZOPEN_STABLE_URL="https://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz"
-# export ZOPEN_STABLE_URL="https://www.lua.org/ftp/lua-5.4.4.tar.gz"
 export ZOPEN_STABLE_DEPS="make zoslib coreutils"
-export ZOPEN_MAKE_OPTS="zos MYLIBS=\"\$LIBS\" MYLDFLAGS=\"\$LDFLAGS\""
-
+export ZOPEN_MAKE_OPTS="zos MYLIBS=\"\$LIBS\" MYLDFLAGS=\"\$LDFLAGS\" MYCFLAGS=\"$CFLAGS\""
+export ZOPEN_TYPE="TARBALL"
 export ZOPEN_CONFIGURE="skip"
 export ZOPEN_CHECK_OPTS="test"
 export ZOPEN_INSTALL_OPTS="install INSTALL_TOP=\${ZOPEN_INSTALL_DIR}"
-export ZOPEN_EXTRA_CFLAGS="-DLUA_USE_POSIX"
+export ZOPEN_COMP="CLANG"
+
+zopen_pre_patch() {
+  export CFLAGS="$CFLAGS -DLUA_USE_POSIX -DLUA_USE_DLOPEN -fvisibility=default"
+}
 
 zopen_pre_install() {
   mkdir -p "${ZOPEN_INSTALL_DIR}"
@@ -33,4 +36,16 @@ zopen_check_results()
 zopen_get_version()
 {
     ./src/lua -v 2>&1 | cut -f2 -d' '
+}
+
+zopen_append_to_env()
+{
+cat <<ZZ
+if [ ! -z "\$ZOPEN_IN_ZOPEN_BUILD" ]; then
+  export ZOPEN_EXTRA_CFLAGS="\${ZOPEN_EXTRA_CFLAGS} -I\$PWD/include"
+  export ZOPEN_EXTRA_CXXFLAGS="\${ZOPEN_EXTRA_CXXFLAGS} -I\$PWD/include"
+  export ZOPEN_EXTRA_LDFLAGS="\${ZOPEN_EXTRA_LDFLAGS} -L\$PWD/lib"
+  export ZOPEN_EXTRA_LIBS="\${ZOPEN_EXTRA_LIBS} -llua"
+fi
+ZZ
 }

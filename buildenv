@@ -1,5 +1,5 @@
 # bump: lua-version /LUA_VERSION="(.*)"/ https://www.lua.org/ftp/|re:/lua-([\d.]+).tar.gz/$1/|semver:*
-LUA_VERSION="5.1.5"
+LUA_VERSION="5.4.7"
 
 export ZOPEN_BUILD_LINE="STABLE"
 # 5.1.5 is needed for Neovim
@@ -26,7 +26,7 @@ zopen_check_results()
   pfx="$2"
   chk="$1/$2_check.log"
 
-  grep -q "Hello world, from Lua 5.1!"  $chk
+  grep -q "Lua 5.4.7"  $chk
   failures=$?
   echo "actualFailures:$failures"
   echo "totalTests:1"

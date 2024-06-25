@@ -1,0 +1,32 @@
+diff --git a/src/Makefile b/src/Makefile
+index b771196..2f41a5a 100644
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -12,7 +12,7 @@ LDFLAGS= $(SYSLDFLAGS) $(MYLDFLAGS)
+ LIBS= -lm $(SYSLIBS) $(MYLIBS)
+ 
+ AR= ar rcu
+-RANLIB= ranlib
++RANLIB= echo
+ RM= rm -f
+ UNAME= uname
+ 
+@@ -30,7 +30,7 @@ CMCFLAGS=
+ 
+ # == END OF USER SETTINGS -- NO NEED TO CHANGE ANYTHING BELOW THIS LINE =======
+ 
+-PLATS= guess aix bsd c89 freebsd generic ios linux linux-readline macosx mingw posix solaris
++PLATS= guess aix bsd c89 freebsd generic ios linux linux-readline macosx mingw posix solaris zos
+ 
+ LUA_A=	liblua.a
+ CORE_O=	lapi.o lcode.o lctype.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o lmem.o lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o ltm.o lundump.o lvm.o lzio.o
+@@ -143,6 +143,9 @@ posix:
+ SunOS solaris:
+ 	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_POSIX -DLUA_USE_DLOPEN -D_REENTRANT" SYSLIBS="-ldl"
+ 
++zos:
++	$(MAKE) all MYCFLAGS="-DLUA_USE_POSIX -DLUA_USE_DLOPEN"
++
+ # Targets that do not create files (not all makes understand .PHONY).
+ .PHONY: all $(PLATS) help test clean default o a depend echo
+ 

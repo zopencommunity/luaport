@@ -2,6 +2,7 @@
 LUA_VERSION="5.1.5"
 
 export ZOPEN_BUILD_LINE="STABLE"
+export ZOPEN_CATEGORIES="language"
 # 5.1.5 is needed for Neovim
 export ZOPEN_STABLE_URL="https://www.lua.org/ftp/lua-${LUA_VERSION}.tar.gz"
 export ZOPEN_STABLE_DEPS="make zoslib coreutils"

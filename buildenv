@@ -1,5 +1,5 @@
 # bump: lua-version /LUA_VERSION="(.*)"/ https://www.lua.org/ftp/|re:/lua-([\d.]+).tar.gz/$1/|semver:*
-LUA_VERSION="5.4.7"
+LUA_VERSION="5.4.8"
 
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_CATEGORIES="language"

@@ -27,7 +27,7 @@ zopen_check_results()
   pfx="$2"
   chk="$1/$2_check.log"
 
-  grep -q "Lua 5.4.7"  $chk
+  grep -q $LUA_VERSION  $chk
   failures=$?
   echo "actualFailures:$failures"
   echo "totalTests:1"

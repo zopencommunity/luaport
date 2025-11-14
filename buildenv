@@ -1,5 +1,5 @@
 # bump: lua-version /LUA_VERSION="(.*)"/ https://www.lua.org/ftp/|re:/lua-([\d.]+).tar.gz/$1/|semver:*
-LUA_VERSION="5.4.7"
+LUA_VERSION="5.4.8"
 
 export ZOPEN_BUILD_LINE="STABLE"
 export ZOPEN_CATEGORIES="language"
@@ -27,7 +27,7 @@ zopen_check_results()
   pfx="$2"
   chk="$1/$2_check.log"
 
-  grep -q "Lua 5.4.7"  $chk
+  grep -q $LUA_VERSION  $chk
   failures=$?
   echo "actualFailures:$failures"
   echo "totalTests:1"
@@ -43,8 +43,7 @@ zopen_append_to_env()
 {
 cat <<ZZ
 if [ ! -z "\$ZOPEN_IN_ZOPEN_BUILD" ]; then
-  export ZOPEN_EXTRA_CFLAGS="\${ZOPEN_EXTRA_CFLAGS} -mzos-target=zosv2r5 -march=z13 -I\$PWD/include"
-  export ZOPEN_SYSTEM_PREREQS="zos25"
+  export ZOPEN_EXTRA_CFLAGS="\${ZOPEN_EXTRA_CFLAGS} -I\$PWD/include"
   export ZOPEN_EXTRA_CXXFLAGS="\${ZOPEN_EXTRA_CXXFLAGS} -I\$PWD/include"
   export ZOPEN_EXTRA_LDFLAGS="\${ZOPEN_EXTRA_LDFLAGS} -L\$PWD/lib"
   export ZOPEN_EXTRA_LIBS="\${ZOPEN_EXTRA_LIBS} -llua"

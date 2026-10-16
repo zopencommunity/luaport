@@ -1,5 +1,5 @@
 diff --git a/src/Makefile b/src/Makefile
-index b771196..2f41a5a 100644
+index 317cb85..416f64f 100644
 --- a/src/Makefile
 +++ b/src/Makefile
 @@ -12,7 +12,7 @@ LDFLAGS= $(SYSLDFLAGS) $(MYLDFLAGS)
@@ -15,12 +15,12 @@ index b771196..2f41a5a 100644
  
  # == END OF USER SETTINGS -- NO NEED TO CHANGE ANYTHING BELOW THIS LINE =======
  
--PLATS= guess aix bsd c89 freebsd generic ios linux macosx mingw posix solaris
-+PLATS= guess aix bsd c89 freebsd generic ios linux macosx mingw posix solaris zos
+-PLATS= guess aix bsd c89 freebsd generic ios linux linux-readline macosx mingw posix solaris
++PLATS= guess aix bsd c89 freebsd generic ios linux linux-readline macosx mingw posix solaris zos
  
  LUA_A=	liblua.a
  CORE_O=	lapi.o lcode.o lctype.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o lmem.o lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o ltm.o lundump.o lvm.o lzio.o
-@@ -143,6 +143,9 @@ posix:
+@@ -141,6 +141,9 @@ posix:
  SunOS solaris:
  	$(MAKE) $(ALL) SYSCFLAGS="-DLUA_USE_POSIX -DLUA_USE_DLOPEN -D_REENTRANT" SYSLIBS="-ldl"
  
